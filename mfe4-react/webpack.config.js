@@ -1,6 +1,5 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-
 module.exports = options => {
   return {
     entry: './index.js',
@@ -28,17 +27,16 @@ module.exports = options => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        
-          // For remotes (please adjust)
-          name: "mfe4",
-          library: { type: "var", name: "mfe4" },
-          filename: "remoteEntry.js",
-          exposes: {
-              './web-components': './app.js',
-          },        
+        // For remotes (please adjust)
+        name: "mfe4",
+        library: { type: "var", name: "mfe4" },
+        filename: "remoteEntry.js",
+        exposes: {
+            './web-components': './app.js',
+        },        
 
-          shared: ["react", "react-dom"]
-        })
+        shared: ["react", "react-dom"]
+      })
     ],
     devServer: {
       port: 4204

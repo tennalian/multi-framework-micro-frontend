@@ -1,33 +1,28 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-    module.exports = {
-      output: {
-        publicPath: "http://localhost:4202/",
-        uniqueName: "mfe2"
+module.exports = {
+  output: {
+    publicPath: "http://localhost:4202/",
+    uniqueName: "mfe2"
+  },
+  optimization: {
+    // Only needed to bypass a temporary bug
+    runtimeChunk: false
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "mfe2",
+      library: { type: "var", name: "mfe2" },
+      filename: "remoteEntry.js",
+      // For hosts (please adjust)
+      remotes: {
+        'mfe3': "mfe3",
       },
-      optimization: {
-        // Only needed to bypass a temporary bug
-        runtimeChunk: false
+      // For remotes (please adjust)
+      exposes: {
+        './web-components': './src/bootstrap.ts',
       },
-      plugins: [
-        new ModuleFederationPlugin({
-          
-            // For remotes (please adjust)
-            name: "mfe2",
-            library: { type: "var", name: "mfe2" },
-            filename: "remoteEntry.js",
-            exposes: {
-                './web-components': './src/bootstrap.ts',
-            },        
-           
-            // For hosts (please adjust)
-            /*
-            remotes: {
-                'mfe1': "mfe1@http://localhost:3000/remoteEntry.js" 
-            },
-            */
-
-           shared: ["@angular/core", "@angular/common", "@angular/router"]
-          })
-      ],
-    };
+      shared: ["@angular/core", "@angular/common", "@angular/router"]
+    }),
+  ],
+};

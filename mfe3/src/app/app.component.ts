@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 declare const require: any;
 
 @Component({
-  selector: 'app-root',
+  selector: 'mfe-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class MfeComponent implements OnInit {
 
   title = 'mfe3';
 

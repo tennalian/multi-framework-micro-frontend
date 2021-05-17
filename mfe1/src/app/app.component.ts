@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 declare const require: any;
 
@@ -10,14 +9,11 @@ declare const require: any;
 })
 export class AppComponent implements OnInit {
 
+  title = 'mfe1';
+
   ngVersion = require('../../package.json').dependencies['@angular/core'];
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.router.navigateByUrl(location.pathname.substr(1));
-    window.addEventListener('popstate', () => {
-      this.router.navigateByUrl(location.pathname.substr(1));
-    });
-  }
+  ngOnInit(): void {  }
 }

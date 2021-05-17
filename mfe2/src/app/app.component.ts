@@ -10,6 +10,8 @@ declare const require: any;
 })
 export class AppComponent implements OnInit {
 
+  title = 'mfe2';
+
   ngVersion = require('../../package.json').dependencies['@angular/core'];
 
   constructor(private router: Router) { }
